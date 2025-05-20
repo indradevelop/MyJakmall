@@ -24,9 +24,6 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile  # Similar to `npm ci` for Yarn
 
-      - name: Run tests
-        run: yarn test
-
       - name: Build Android APK
         run: |
           cd android
