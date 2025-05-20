@@ -1,3 +1,4 @@
+# Example workflow using Yarn
 name: Build and Test
 
 on:
@@ -14,22 +15,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK (Android)
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'zulu'
-          java-version: '17'
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18.x'
+          cache: 'yarn'  # Cache Yarn dependencies
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile  # Similar to `npm ci` for Yarn
 
       - name: Run tests
-        run: npm test
+        run: yarn test
 
       - name: Build Android APK
         run: |
